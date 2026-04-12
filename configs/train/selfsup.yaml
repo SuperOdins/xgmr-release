@@ -1,0 +1,25 @@
+train:
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  epochs: 5
+  amp: true
+
+data:
+  batch_size: 4
+
+loss:
+  lambda_eq: 1.0
+  lambda_geo: 0.2
+  lambda_ent: 0.05
+  lambda_q: 0.1
+
+selfsup:
+  bias_sigma_px: 4.0
+  geom:
+    h_bounds_px: [5, 15]
+    rot_deg: [3, 8]
+    scale: [0.95, 1.05]
+  augment:
+    weak_color: true
+    strong_color: true
+    noise_blur: true

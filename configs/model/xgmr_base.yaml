@@ -1,0 +1,23 @@
+backbone:
+  name: light
+  base_dim: 32
+  depth: 3
+mba:
+  in_ch_rgb: 3
+  in_ch_t: 1
+  out_dim: 64
+  use_eaef: true
+matcher:
+  dim: 64
+  layers: [2, 1]
+  matcher: dual_softmax
+selfcalib:
+  dim: 64
+  tps_grid: 5
+  iters: 2
+  tps_reg: 0.001
+qfusion:
+  tile: 32
+  k: 8.0
+  tau: 0.5
+  mode: feature
