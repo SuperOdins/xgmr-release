@@ -1,9 +1,10 @@
 # XGMR: Detector-Free RGB-Thermal Image Registration with Geometric Inductive Bias
 
-Official implementation of **XGMR**, a detector-free framework for RGB-Thermal image registration with geometric inductive bias. XGMR extends the LoFTR dense-matching paradigm with four novel modules designed for cross-modal alignment:
+Official implementation of **XGMR**, a detector-free framework for RGB-Thermal image registration with geometric inductive bias. XGMR extends the LoFTR dense-matching paradigm with five modules designed for cross-modal alignment:
 
 - **MBA** (Modality Bridging Adapter) — bridges the domain gap between RGB and thermal features with optional EAEF channel attention.
-- **EBA** (Epipolar-Biased Attention) — injects geometric priors into the coarse/fine matching stages via dual-softmax or Sinkhorn OT.
+- **EBA** (Epipolar-Biased Attention) — injects geometric priors into the coarse/fine cross-attention stages.
+- **Dual-Softmax Matching** — optimal-transport-free assignment that produces reliable coarse-to-fine correspondences.
 - **Self-Calibrating Head** — predicts homography + TPS deformation fields for robust spatial alignment.
 - **Q-Fusion** (Quality-Aware Fusion) — tile-level gating that adaptively fuses aligned modalities based on match quality.
 
