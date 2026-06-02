@@ -92,10 +92,18 @@ reproducible without redistributing the images.
 
 | Split file | Dataset | Role | Pairs |
 |------------|---------|------|------:|
-| `splits/nii_train.csv` | NII-CU MAPD | train | 4980 |
-| `splits/nii_val.csv`   | NII-CU MAPD | validation (eval) | 485 |
-| `splits/llvip_test.csv`| LLVIP | test (eval) | 3463 |
-| `splits/msrs_test.csv` | MSRS | test (eval) | 361 |
+| `splits/nii_train.csv`   | NII-CU MAPD | train | 4980 |
+| `splits/llvip_train.csv` | LLVIP | train | 12025 |
+| `splits/msrs_train.csv`  | MSRS | train | 1083 |
+| `splits/nii_val.csv`     | NII-CU MAPD | validation (held-out eval) | 485 |
+| `splits/llvip_test.csv`  | LLVIP | test (eval) | 3463 |
+| `splits/msrs_test.csv`   | MSRS | test (eval) | 361 |
+
+Training uses the **combined** train split of all three datasets
+(4980 + 12025 + 1083 = **18,088 pairs**, 50 epochs), as reported in the paper. NII-CU MAPD has
+no public test partition, so its **validation** split is the held-out evaluation set; LLVIP and
+MSRS are evaluated on their official **test** partitions. Train and test partitions are disjoint
+(zero filename overlap within each dataset).
 
 To reconstruct a split, download the dataset and place the listed files under
 `data/<dataset>/{rgb,thermal}/<split>/`. Filenames already match the originals, so no
