@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software (this repository) and the paper below."
+title: "XGMR: Detector-Free RGB-Thermal Image Registration with Geometric Inductive Bias"
+type: software
+authors:
+  - family-names: Park
+    given-names: "Jong Il"
+    affiliation: "aSSIST University, Seoul, Republic of Korea"
+  - family-names: Kim
+    given-names: Cheong
+    affiliation: "aSSIST University, Seoul / Dong-A University, Busan, Republic of Korea"
+    email: montwins@dau.ac.kr
+repository-code: "https://github.com/SuperOdins/xgmr-release"
+license: MIT
+keywords:
+  - RGB-thermal image registration
+  - cross-modal matching
+  - self-supervised learning
+  - geometric inductive bias
+  - epipolar attention
+  - detector-free registration
+preferred-citation:
+  type: article
+  title: "XGMR: Detector-Free RGB-Thermal Image Registration with Geometric Inductive Bias"
+  authors:
+    - family-names: Park
+      given-names: "Jong Il"
+    - family-names: Kim
+      given-names: Cheong
+  journal: "IEEE Access"
+  year: 2026

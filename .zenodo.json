@@ -1,0 +1,32 @@
+{
+  "title": "XGMR: Detector-Free RGB-Thermal Image Registration with Geometric Inductive Bias",
+  "description": "Reference implementation of XGMR, a detector-free, self-supervised framework for RGB-thermal image registration with geometric inductive bias (epipolar-biased cross-attention plus an equivariance-based self-supervised loss). This repository contains the source code, configuration files, and the exact train/validation/test split lists for the three benchmark datasets (NII-CU MAPD, LLVIP, MSRS) used in the paper. Trained model checkpoints (XGMR_Full, three seeds, seven ablations, and a fine-tuned LoFTR baseline) are distributed as assets of the corresponding GitHub release. The benchmark images are third-party datasets and are not redistributed.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Park, Jong Il",
+      "affiliation": "aSSIST University, Seoul, Republic of Korea"
+    },
+    {
+      "name": "Kim, Cheong",
+      "affiliation": "aSSIST University, Seoul / Dong-A University, Busan, Republic of Korea"
+    }
+  ],
+  "keywords": [
+    "RGB-thermal image registration",
+    "cross-modal matching",
+    "self-supervised learning",
+    "geometric inductive bias",
+    "epipolar attention",
+    "detector-free registration"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/SuperOdins/xgmr-release",
+      "scheme": "url"
+    }
+  ]
+}
