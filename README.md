@@ -11,7 +11,7 @@ Official implementation of **XGMR**, a detector-free framework for RGB-Thermal i
 ## Installation
 
 ```bash
-git clone https://github.com/<your-org>/xgmr-release.git
+git clone https://github.com/SuperOdins/xgmr-release.git
 cd xgmr-release
 python -m venv .venv
 source .venv/bin/activate        # Windows: .\.venv\Scripts\activate
@@ -71,6 +71,37 @@ python ablation.py
 
 > **Note:** If no images are found, the pipeline automatically generates random tensors for smoke-testing.
 
+### Benchmark datasets (used in the paper)
+
+The paper evaluates on three public RGB–thermal datasets. They are **not** redistributed
+here; download them from their official sources and cite the original authors.
+
+| Dataset | Reference | DOI | Source |
+|---------|-----------|-----|--------|
+| **NII-CU MAPD** | Speth et al., *Deep Learning with RGB and Thermal Images Onboard a Drone for Monitoring Operations*, J. Field Robotics 39(6):840–868, 2022 | `10.1002/rob.22082` | From the original authors (NII-CU Multispectral Aerial Person Detection) |
+| **LLVIP** | Jia et al., *LLVIP: A Visible-Infrared Paired Dataset for Low-light Vision*, ICCVW 2021 | `10.1109/ICCVW54120.2021.00389` | https://github.com/bupt-ai-cz/LLVIP |
+| **MSRS** | Tang et al., *PIAFusion: A Progressive Infrared and Visible Image Fusion Network Based on Illumination Aware*, Information Fusion 83–84:79–92, 2022 | `10.1016/j.inffus.2022.03.007` | https://github.com/Linfeng-Tang/MSRS |
+
+Each dataset is governed by its own license/terms; review and comply before use.
+
+### Data splits
+
+`splits/` lists the exact train/validation/test partitions used in every experiment. Each
+CSV gives the paired filenames in loader order (`rgb,thermal`), so the splits are fully
+reproducible without redistributing the images.
+
+| Split file | Dataset | Role | Pairs |
+|------------|---------|------|------:|
+| `splits/nii_train.csv` | NII-CU MAPD | train | 4980 |
+| `splits/nii_val.csv`   | NII-CU MAPD | validation (eval) | 485 |
+| `splits/llvip_test.csv`| LLVIP | test (eval) | 3463 |
+| `splits/msrs_test.csv` | MSRS | test (eval) | 361 |
+
+To reconstruct a split, download the dataset and place the listed files under
+`data/<dataset>/{rgb,thermal}/<split>/`. Filenames already match the originals, so no
+renaming is needed. There is no ground-truth homography file: evaluation warps are generated
+synthetically from a fixed seed, so code + seed + these splits fully determine the protocol.
+
 ## Tests
 
 ```bash
@@ -94,6 +125,29 @@ eval.py        # Evaluation script
 demo.py        # Inference & visualisation
 ablation.py    # Ablation study runner
 ```
+
+## Pretrained Checkpoints
+
+All trained weights are attached to the [`xgmr-v1.0` release](../../releases/tag/xgmr-v1.0).
+They are PyTorch-Lightning `.ckpt` files (50 epochs, self-supervised). Download the one you
+need and pass it via `--ckpt`:
+
+```bash
+python eval.py --config configs/default.yaml --ckpt XGMR_Full.ckpt
+```
+
+| File | Configuration | Reproduces |
+|------|---------------|------------|
+| `XGMR_Full.ckpt` | Full model (all modules) | Main results + qualitative figures |
+| `XGMR_Full_seed42/7/123.ckpt` | Full model, 3 independent seeds | Seed variance / robustness |
+| `ablation_NoMBA.ckpt` | MBA (cross-modal fusion) disabled | Ablation |
+| `ablation_NoQFusion.ckpt` | Q-Fusion disabled | Ablation |
+| `ablation_NoSelfCalib.ckpt` | Self-Calibrating Head disabled | Ablation |
+| `ablation_NoDualSoftmax.ckpt` | Dual-softmax matching disabled | Ablation |
+| `ablation_NoEpipolarBias.ckpt` | Epipolar-Biased Attention disabled | Ablation |
+| `ablation_NoGeoLoss.ckpt` | Geometric loss `L_geo` disabled | Ablation |
+| `ablation_Vanilla.ckpt` | All proposed components off | Ablation |
+| `baseline_LoFTR_finetuned.ckpt` | LoFTR fine-tuned on the same data | Baseline |
 
 ## Citation
 
