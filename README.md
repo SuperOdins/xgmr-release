@@ -1,5 +1,7 @@
 # XGMR: Detector-Free RGB-Thermal Image Registration with Geometric Inductive Bias
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20502089.svg)](https://doi.org/10.5281/zenodo.20502089)
+
 Official implementation of **XGMR**, a detector-free framework for RGB-Thermal image registration with geometric inductive bias. XGMR extends the LoFTR dense-matching paradigm with five modules designed for cross-modal alignment:
 
 - **MBA** (Modality Bridging Adapter) — bridges the domain gap between RGB and thermal features with optional EAEF channel attention.
